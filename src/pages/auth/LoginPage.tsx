@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { useAuthStore } from '@/lib/store/authStore'
 import { ROUTES } from '@/constants/routes'
 import { logger } from '@/lib/utils/logger'
+import logo from '../../assets/logo.png'
 
 // ─── Zod validation schema ─────────────────────────────────────────────────────
 // Why Zod? It gives us:
@@ -88,9 +89,9 @@ export default function LoginPage() {
         <div className="card p-8">
           {/* Logo */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold tracking-widest text-red-500 mb-1">
-              YETU
-            </h1>
+            {/* <h1 className="text-3xl font-bold tracking-widest text-red-500 mb-1"> */}
+              <img className="px-16" src={logo} alt="" />
+            {/* </h1> */}
             <h2 className="text-xl font-semibold text-gray-900">Login to Account</h2>
             <p className="text-sm text-gray-500 mt-1">
               Please enter your email and password to continue
