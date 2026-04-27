@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { useState } from 'react'
 import { useAuthStore } from '@/lib/store/authStore'
@@ -28,11 +28,13 @@ const loginSchema = z.object({
 type LoginForm = z.infer<typeof loginSchema>
 
 export default function LoginPage() {
-  const navigate = useNavigate()
-  const login    = useAuthStore((s) => s.login)
+  const navigate  = useNavigate()
+  const location  = useLocation()
+  const login     = useAuthStore((s) => s.login)
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading,    setIsLoading]    = useState(false)
   const [serverError,  setServerError]  = useState('')
+  const passwordReset = (location.state as { passwordReset?: boolean } | null)?.passwordReset ?? false
 
   // React Hook Form + Zod — handles:
   // register: connects input to form state
@@ -95,6 +97,14 @@ export default function LoginPage() {
             </p>
           </div>
 
+          {/* Password reset success */}
+          {passwordReset && (
+            <div className="mb-4 px-4 py-3 bg-green-50 border border-green-200
+                            rounded-lg text-sm text-green-700">
+              Password reset successfully. You can now sign in.
+            </div>
+          )}
+
           {/* Server error */}
           {serverError && (
             <div className="mb-4 px-4 py-3 bg-red-50 border border-red-200
@@ -131,8 +141,11 @@ export default function LoginPage() {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="text-sm font-medium text-gray-700">Password</label>
-                <button type="button"
-                        className="text-xs text-red-500 hover:text-red-600 font-medium">
+                <button
+                  type="button"
+                  onClick={() => navigate(ROUTES.FORGOT_PASSWORD)}
+                  className="text-xs text-red-500 hover:text-red-600 font-medium transition-colors"
+                >
                   Forgot Password?
                 </button>
               </div>

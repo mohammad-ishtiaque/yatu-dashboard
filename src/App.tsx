@@ -5,6 +5,9 @@ import { ROUTES } from '@/constants/routes'
 import { lazy, Suspense } from 'react'
 
 const LoginPage          = lazy(() => import('@/pages/auth/LoginPage'))
+const ForgotPasswordPage = lazy(() => import('@/pages/auth/ForgotPasswordPage'))
+const VerifyOtpPage      = lazy(() => import('@/pages/auth/VerifyOtpPage'))
+const ResetPasswordPage  = lazy(() => import('@/pages/auth/ResetPasswordPage'))
 const OverviewPage       = lazy(() => import('@/pages/dashboard/OverviewPage'))
 const UsersPage          = lazy(() => import('@/pages/users/UsersPage'))
 const UserDetailPage     = lazy(() => import('@/pages/users/UserDetailPage'))
@@ -37,7 +40,10 @@ function S({ children }: { children: React.ReactNode }) {
 }
 
 const router = createBrowserRouter([
-  { path: ROUTES.LOGIN, element: <S><LoginPage /></S> },
+  { path: ROUTES.LOGIN,           element: <S><LoginPage /></S> },
+  { path: ROUTES.FORGOT_PASSWORD, element: <S><ForgotPasswordPage /></S> },
+  { path: ROUTES.VERIFY_OTP,      element: <S><VerifyOtpPage /></S> },
+  { path: ROUTES.RESET_PASSWORD,  element: <S><ResetPasswordPage /></S> },
   {
     element: <ProtectedRoute />,
     children: [{
