@@ -66,7 +66,7 @@ export default function UsersPage() {
           <h2 className="text-lg font-semibold text-gray-900">User</h2>
           <p className="text-sm text-gray-500">{data ? `${data.total} total users` : 'Loading...'}</p>
         </div>
-        <Button leftIcon={<UserPlus className="w-4 h-4" />} size="sm">Add User</Button>
+        {/* <Button leftIcon={<UserPlus className="w-4 h-4" />} size="sm">Add User</Button> */}
       </div>
 
       <div className="card p-4 flex flex-col sm:flex-row gap-3">

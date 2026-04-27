@@ -114,6 +114,28 @@ export interface ApiError {
   statusCode: number
 }
 
+// ─── Notification Types ───────────────────────────────────────────────────────
+export type NotificationType =
+  | 'new_user'
+  | 'new_rider'
+  | 'booking_created'
+  | 'booking_completed'
+  | 'booking_cancelled'
+  | 'rider_suspended'
+  | 'bike_maintenance'
+  | 'support_message'
+  | 'content_published'
+  | 'low_stock'
+
+export interface Notification {
+  id: string
+  type: NotificationType
+  title: string
+  message: string
+  timestamp: string
+  read: boolean
+}
+
 // ─── Auth Types ───────────────────────────────────────────────────────────────
 export interface LoginCredentials {
   email: string

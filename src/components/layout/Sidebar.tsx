@@ -4,7 +4,7 @@ import type { LucideIcon } from 'lucide-react'
 import { NAVIGATION, ROUTES } from '@/constants/routes'
 import { useAuthStore } from '@/lib/store/authStore'
 import { cn } from '@/lib/utils/formatters'
-
+import logo from '../../assets/logo.png'
 // ─── Dynamic icon resolution ───────────────────────────────────────────────────
 // Icons are stored as strings in the nav config ('LayoutDashboard', 'Users', etc.)
 // This resolves the string to the actual Lucide component at render time.
@@ -33,7 +33,7 @@ export function Sidebar() {
            style={{ height: 'var(--topbar-height)' }}>
         <span className="text-2xl font-bold tracking-widest"
               style={{ color: '#E53935' }}>
-          YETU
+          <img src={logo} alt="" />
         </span>
       </div>
 
