@@ -95,8 +95,9 @@ export function RecentUsersTable({ users, isLoading }: RecentUsersTableProps) {
                   <td className="px-5 py-3.5">
                     <Link
                       to={ROUTES.USER_DETAIL(user.id)}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity
-                                 text-xs text-red-500 hover:text-red-600 font-medium"
+                      className="inline-flex items-center gap-1 text-xs text-red-500 hover:text-red-600
+                                 font-medium border border-red-200 rounded-lg px-2.5 py-1 hover:bg-red-50
+                                 transition-colors whitespace-nowrap"
                     >
                       View →
                     </Link>

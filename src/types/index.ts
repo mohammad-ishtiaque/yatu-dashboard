@@ -1,8 +1,3 @@
-// ─── User Types ──────────────────────────────────────────────────────────────
-// String union > enum for status fields.
-// Why: enums compile to JS objects with reverse mapping (extra bytes + confusion).
-// String unions are purely a compile-time check — zero runtime cost.
-
 export type UserStatus = 'active' | 'inactive' | 'suspended'
 export type UserRole   = 'user' | 'rider' | 'admin'
 
@@ -13,12 +8,12 @@ export interface User {
   phone: string
   status: UserStatus
   role: UserRole
-  joinedAt: string   // ISO 8601 — always store dates as strings from API
-  avatarUrl?: string // optional — show initials fallback when absent
+  joinedAt: string
+  avatarUrl?: string
 }
 
 // ─── Rider Types ─────────────────────────────────────────────────────────────
-export type RiderStatus = 'active' | 'inactive' | 'on_trip'
+export type RiderStatus = 'active' | 'inactive' | 'on_trip' | 'suspended'
 
 export interface Rider {
   id: string
@@ -30,6 +25,9 @@ export interface Rider {
   rating: number
   joinedAt: string
   avatarUrl?: string
+  vehicleType?: string
+  licenseNumber?: string
+  address?: string
 }
 
 // ─── Bike Types ───────────────────────────────────────────────────────────────
@@ -37,11 +35,16 @@ export type BikeStatus = 'available' | 'in_use' | 'maintenance'
 
 export interface Bike {
   id: string
+  brand: string
   model: string
   plateNumber: string
+  color: string
+  year?: number
   status: BikeStatus
   location: string
   lastServiceDate: string
+  imageUrl?: string
+  assignedRider?: { id: string; name: string; avatarUrl?: string } | null
 }
 
 // ─── Booking Types ────────────────────────────────────────────────────────────
@@ -60,6 +63,27 @@ export interface Booking {
   completedAt?: string
 }
 
+// ─── FAQ Types ────────────────────────────────────────────────────────────────
+export interface FAQ {
+  id: string
+  question: string
+  answer: string
+  createdAt: string
+  updatedAt: string
+}
+
+// ─── Content Page Types (Privacy Policy, Terms & Conditions) ─────────────────
+export type ContentType = 'privacy_policy' | 'terms_and_conditions'
+
+export interface ContentPage {
+  id: string
+  type: ContentType
+  title: string
+  content: string  // HTML content from rich text editor
+  publishedAt?: string
+  updatedAt: string
+}
+
 // ─── Dashboard Types ──────────────────────────────────────────────────────────
 export interface DashboardStats {
   totalRiders: number
@@ -76,8 +100,6 @@ export interface GrowthDataPoint {
 }
 
 // ─── API Response Wrapper ─────────────────────────────────────────────────────
-// Every paginated list from the API is wrapped in this shape.
-// Generic type T means: PaginatedResponse<User>, PaginatedResponse<Rider>, etc.
 export interface PaginatedResponse<T> {
   data: T[]
   total: number
@@ -119,4 +141,9 @@ export interface UserFilters extends PaginationParams {
   search?: string
   status?: UserStatus | 'all'
   role?: UserRole | 'all'
+}
+
+export interface BikeFilters extends PaginationParams {
+  search?: string
+  status?: BikeStatus | 'all'
 }
