@@ -5,11 +5,13 @@ import type {
 
 // ─── Dashboard Stats ──────────────────────────────────────────────────────────
 export const mockDashboardStats: DashboardStats = {
-  totalRiders:  75,
-  totalUsers:   1576,
-  totalBikes:   75,
-  activeUsers:  870,
+  totalRiders:   75,
+  totalUsers:    1576,
+  totalBikes:    75,
+  activeUsers:   870,
   activeDrivers: 110,
+  totalTrips:    4250,
+  totalIncome:   127480,
 }
 
 // ─── Growth Chart Data ────────────────────────────────────────────────────────
@@ -46,12 +48,12 @@ export const mockUsers: User[] = [
 
 // ─── Riders ───────────────────────────────────────────────────────────────────
 export const mockRiders: Rider[] = [
-  { id: 'r1', name: 'Kwame Asante',   email: 'kwame@asante.gh',   phone: '233-244-7788', status: 'active',    totalTrips: 142, rating: 4.8, joinedAt: '2024-11-05', vehicleType: 'Motorcycle', licenseNumber: 'GH-LIC-001', address: 'Accra, Ghana' },
-  { id: 'r2', name: 'Tunde Adeyemi',  email: 'tunde@adeyemi.ng',  phone: '234-801-3344', status: 'on_trip',   totalTrips: 98,  rating: 4.6, joinedAt: '2024-11-12', vehicleType: 'Motorcycle', licenseNumber: 'NG-LIC-002', address: 'Lagos, Nigeria' },
-  { id: 'r3', name: 'Moses Githinji', email: 'moses@githinji.ke', phone: '254-722-5544', status: 'active',    totalTrips: 210, rating: 4.9, joinedAt: '2024-10-20', vehicleType: 'Motorcycle', licenseNumber: 'KE-LIC-003', address: 'Nairobi, Kenya' },
-  { id: 'r4', name: 'Seun Bello',     email: 'seun@bello.ng',     phone: '234-806-9988', status: 'inactive',  totalTrips: 34,  rating: 4.2, joinedAt: '2024-12-01', vehicleType: 'Motorcycle', licenseNumber: 'NG-LIC-004', address: 'Abuja, Nigeria' },
-  { id: 'r5', name: 'Nana Boateng',   email: 'nana@boateng.gh',   phone: '233-266-1122', status: 'active',    totalTrips: 178, rating: 4.7, joinedAt: '2024-10-08', vehicleType: 'Motorcycle', licenseNumber: 'GH-LIC-005', address: 'Kumasi, Ghana' },
-  { id: 'r6', name: 'Akin Adeleke',   email: 'akin@adeleke.ng',   phone: '234-702-8899', status: 'suspended', totalTrips: 55,  rating: 3.8, joinedAt: '2024-12-15', vehicleType: 'Motorcycle', licenseNumber: 'NG-LIC-006', address: 'Port Harcourt, Nigeria' },
+  { id: 'r1', name: 'Kwame Asante',   email: 'kwame@asante.gh',   phone: '233-244-7788', status: 'active',    totalTrips: 142, totalIncome: 4260.00, rating: 4.8, joinedAt: '2024-11-05', vehicleType: 'Motorcycle', licenseNumber: 'GH-LIC-001', address: 'Accra, Ghana' },
+  { id: 'r2', name: 'Tunde Adeyemi',  email: 'tunde@adeyemi.ng',  phone: '234-801-3344', status: 'on_trip',   totalTrips: 98,  totalIncome: 2744.00, rating: 4.6, joinedAt: '2024-11-12', vehicleType: 'Motorcycle', licenseNumber: 'NG-LIC-002', address: 'Lagos, Nigeria' },
+  { id: 'r3', name: 'Moses Githinji', email: 'moses@githinji.ke', phone: '254-722-5544', status: 'active',    totalTrips: 210, totalIncome: 6720.00, rating: 4.9, joinedAt: '2024-10-20', vehicleType: 'Motorcycle', licenseNumber: 'KE-LIC-003', address: 'Nairobi, Kenya' },
+  { id: 'r4', name: 'Seun Bello',     email: 'seun@bello.ng',     phone: '234-806-9988', status: 'inactive',  totalTrips: 34,  totalIncome:  850.00, rating: 4.2, joinedAt: '2024-12-01', vehicleType: 'Motorcycle', licenseNumber: 'NG-LIC-004', address: 'Abuja, Nigeria' },
+  { id: 'r5', name: 'Nana Boateng',   email: 'nana@boateng.gh',   phone: '233-266-1122', status: 'active',    totalTrips: 178, totalIncome: 5518.00, rating: 4.7, joinedAt: '2024-10-08', vehicleType: 'Motorcycle', licenseNumber: 'GH-LIC-005', address: 'Kumasi, Ghana' },
+  { id: 'r6', name: 'Akin Adeleke',   email: 'akin@adeleke.ng',   phone: '234-702-8899', status: 'suspended', totalTrips: 55,  totalIncome: 1485.00, rating: 3.8, joinedAt: '2024-12-15', vehicleType: 'Motorcycle', licenseNumber: 'NG-LIC-006', address: 'Port Harcourt, Nigeria' },
 ]
 
 // ─── Bikes ────────────────────────────────────────────────────────────────────

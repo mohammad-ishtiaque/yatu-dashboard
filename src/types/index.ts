@@ -22,6 +22,7 @@ export interface Rider {
   phone: string
   status: RiderStatus
   totalTrips: number
+  totalIncome: number
   rating: number
   joinedAt: string
   avatarUrl?: string
@@ -91,6 +92,8 @@ export interface DashboardStats {
   totalBikes: number
   activeUsers: number
   activeDrivers: number
+  totalTrips: number
+  totalIncome: number
 }
 
 export interface GrowthDataPoint {

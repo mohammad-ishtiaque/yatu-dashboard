@@ -8,6 +8,7 @@ import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
 import { useRiders, useBlockRider, useUnblockRider } from '@/lib/hooks/useRiders'
 import { ROUTES } from '@/constants/routes'
+import { formatCurrency } from '@/lib/utils/formatters'
 import type { Rider, RiderStatus } from '@/types'
 
 const LIMIT = 8
@@ -28,6 +29,7 @@ function TableSkeleton() {
           <td className="px-5 py-3.5"><div className="flex items-center gap-3"><div className="skeleton w-8 h-8 rounded-full" /><div className="skeleton h-3 w-28" /></div></td>
           <td className="px-5 py-3.5"><div className="skeleton h-3 w-24" /></td>
           <td className="px-5 py-3.5"><div className="skeleton h-3 w-12" /></td>
+          <td className="px-5 py-3.5"><div className="skeleton h-3 w-16" /></td>
           <td className="px-5 py-3.5"><div className="skeleton h-3 w-12" /></td>
           <td className="px-5 py-3.5"><div className="skeleton h-5 w-14 rounded-full" /></td>
           <td className="px-5 py-3.5"><div className="skeleton h-7 w-20" /></td>
@@ -102,14 +104,14 @@ export default function RidersPage() {
           <table className="w-full">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-100">
-                {['Rider', 'Phone', 'Total Trips', 'Rating', 'Status', 'Actions'].map(h => (
+                {['Rider', 'Phone', 'Total Trips', 'Total Income', 'Rating', 'Status', 'Actions'].map(h => (
                   <th key={h} className="px-5 py-3 text-left text-[11px] font-semibold text-gray-400 uppercase tracking-wider">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {isLoading ? <TableSkeleton /> : data?.data.length === 0 ? (
-                <tr><td colSpan={6} className="px-5 py-16 text-center text-sm text-gray-400">No riders match your search.</td></tr>
+                <tr><td colSpan={7} className="px-5 py-16 text-center text-sm text-gray-400">No riders match your search.</td></tr>
               ) : data?.data.map(rider => (
                 <tr key={rider.id} className="hover:bg-gray-50/50 transition-colors animate-fade-in">
                   <td className="px-5 py-3.5">
@@ -120,6 +122,7 @@ export default function RidersPage() {
                   </td>
                   <td className="px-5 py-3.5 text-sm text-gray-600">{rider.phone}</td>
                   <td className="px-5 py-3.5 text-sm font-semibold text-gray-900">{rider.totalTrips}</td>
+                  <td className="px-5 py-3.5 text-sm font-semibold text-green-700">{formatCurrency(rider.totalIncome)}</td>
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-1 text-sm text-amber-500 font-medium">
                       <Star className="w-3.5 h-3.5 fill-amber-400" />

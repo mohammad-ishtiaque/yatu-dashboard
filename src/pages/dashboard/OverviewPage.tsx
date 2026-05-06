@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { Users, Bike, UserCheck } from 'lucide-react'
+import { Users, Bike, UserCheck, TrendingUp, Route } from 'lucide-react'
 import { StatCard } from '@/components/ui/StatCard'
 import { BarChart } from '@/components/charts/BarChart'
 import { DonutChart } from '@/components/charts/DonutChart'
 import { RecentUsersTable } from '@/components/features/dashboard/RecentUsersTable'
 import { useDashboardStats, useGrowthData } from '@/lib/hooks/useDashboard'
 import { useUsers } from '@/lib/hooks/useUsers'
+import { formatCurrency } from '@/lib/utils/formatters'
 
 export default function OverviewPage() {
   const [year, setYear] = useState(new Date().getFullYear())
@@ -19,6 +20,29 @@ export default function OverviewPage() {
         <StatCard label="Total Riders" value={stats?.totalRiders ?? 0} icon={Bike}       iconBgColor="bg-orange-100" iconColor="text-orange-500" trend={{ value: 12, direction: 'up' }} isLoading={statsLoading} />
         <StatCard label="Total Users"  value={stats?.totalUsers  ?? 0} icon={Users}      iconBgColor="bg-blue-100"   iconColor="text-blue-500"   trend={{ value: 8,  direction: 'up' }} isLoading={statsLoading} />
         <StatCard label="Total Bikes"  value={stats?.totalBikes  ?? 0} icon={UserCheck}  iconBgColor="bg-red-100"    iconColor="text-red-500"    trend={{ value: 3,  direction: 'up' }} isLoading={statsLoading} />
+      </div>
+
+      {/* Financial & Trip Summary */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <StatCard
+          label="Total Income"
+          value={stats?.totalIncome ?? 0}
+          icon={TrendingUp}
+          iconBgColor="bg-green-100"
+          iconColor="text-green-600"
+          formatter={formatCurrency}
+          trend={{ value: 15, direction: 'up' }}
+          isLoading={statsLoading}
+        />
+        <StatCard
+          label="Total Trips"
+          value={stats?.totalTrips ?? 0}
+          icon={Route}
+          iconBgColor="bg-purple-100"
+          iconColor="text-purple-600"
+          trend={{ value: 10, direction: 'up' }}
+          isLoading={statsLoading}
+        />
       </div>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         <div className="card p-5 xl:col-span-2">

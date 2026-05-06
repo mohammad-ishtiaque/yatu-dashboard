@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Modal } from '@/components/ui/Modal'
 import { useRider, useBlockRider, useUnblockRider } from '@/lib/hooks/useRiders'
-import { formatDate } from '@/lib/utils/formatters'
+import { formatDate, formatCurrency } from '@/lib/utils/formatters'
 import { ROUTES } from '@/constants/routes'
 
 function InfoRow({ icon: Icon, label, value }: {
@@ -117,18 +117,24 @@ export default function RiderDetailPage() {
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
           <div className="text-center">
             <p className="text-xl font-bold text-gray-900">{rider.totalTrips}</p>
             <p className="text-xs text-gray-500 mt-0.5">Total Trips</p>
           </div>
-          <div className="text-center border-x border-gray-200">
+          <div className="text-center sm:border-l border-gray-200">
+            <p className="text-xl font-bold text-green-700">{formatCurrency(rider.totalIncome)}</p>
+            <p className="text-xs text-gray-500 mt-0.5">Total Income</p>
+          </div>
+          <div className="text-center sm:border-l border-gray-200">
+            <p className="text-xl font-bold text-gray-900">
+              {rider.totalTrips > 0 ? formatCurrency(rider.totalIncome / rider.totalTrips) : '$0.00'}
+            </p>
+            <p className="text-xs text-gray-500 mt-0.5">Avg / Trip</p>
+          </div>
+          <div className="text-center sm:border-l border-gray-200">
             <p className="text-xl font-bold text-gray-900">{rider.rating}</p>
             <p className="text-xs text-gray-500 mt-0.5">Rating</p>
-          </div>
-          <div className="text-center">
-            <p className="text-xl font-bold text-gray-900 capitalize">{rider.status.replace('_', ' ')}</p>
-            <p className="text-xs text-gray-500 mt-0.5">Status</p>
           </div>
         </div>
 

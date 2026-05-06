@@ -11,6 +11,7 @@ interface StatCardProps {
     value: number       // percentage change
     direction: 'up' | 'down'
   }
+  formatter?: (value: number) => string
   isLoading?: boolean
 }
 
@@ -31,7 +32,7 @@ function StatCardSkeleton() {
 export function StatCard({
   label, value, icon: Icon,
   iconBgColor, iconColor,
-  trend, isLoading,
+  trend, formatter, isLoading,
 }: StatCardProps) {
   if (isLoading) return <StatCardSkeleton />
 
@@ -51,7 +52,7 @@ export function StatCard({
           {label}
         </p>
         <p className="text-2xl font-bold text-gray-900">
-          {formatNumber(value)}
+          {formatter ? formatter(value) : formatNumber(value)}
         </p>
         {trend && (
           <p className={cn(
